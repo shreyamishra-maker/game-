@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEON DRIFT — Cyber Racing</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts: Orbitron (display) + Rajdhani (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       START MENU OVERLAY
+  ═══════════════════════════════════════════════ -->
+  <div id="startMenu" class="overlay">
+    <div class="menu-card">
+      <div class="logo-area">
+        <div class="logo-stripe"></div>
+        <h1 class="game-title">NEON<br/><span>DRIFT</span></h1>
+        <p class="game-subtitle">CYBER RACING</p>
+        <div class="logo-stripe"></div>
+      </div>
+
+      <!-- Car Color Selector -->
+      <div class="section-label">SELECT YOUR RIDE</div>
+      <div id="carSelector" class="car-selector">
+        <div class="car-option selected" data-color="cyan"    style="--car-color:#00f5ff"></div>
+        <div class="car-option"          data-color="magenta" style="--car-color:#ff00cc"></div>
+        <div class="car-option"          data-color="lime"    style="--car-color:#39ff14"></div>
+        <div class="car-option"          data-color="orange"  style="--car-color:#ff6600"></div>
+        <div class="car-option"          data-color="gold"    style="--car-color:#ffd700"></div>
+      </div>
+
+      <!-- Day/Night toggle -->
+      <div class="toggle-row">
+        <span class="section-label" style="margin:0">MODE</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="nightToggle" checked />
+          <span class="toggle-track">
+            <span class="toggle-thumb"></span>
+          </span>
+        </label>
+        <span class="mode-label" id="modeLabel">NIGHT</span>
+      </div>
+
+      <!-- Music toggle -->
+      <div class="toggle-row">
+        <span class="section-label" style="margin:0">MUSIC</span>
+        <label class="toggle-switch">
+          <input type="checkbox" id="musicToggle" checked />
+          <span class="toggle-track">
+            <span class="toggle-thumb"></span>
+          </span>
+        </label>
+        <span class="mode-label" id="musicLabel">ON</span>
+      </div>
+
+      <div class="highscore-display">
+        BEST: <span id="menuHighScore">0</span>
+      </div>
+
+      <button id="playBtn" class="btn-primary">
+        <span class="btn-glow"></span>
+        ▶ &nbsp;PLAY GAME
+      </button>
+
+      <p class="controls-hint">
+        ← → / A D &nbsp;·&nbsp; MOVE &nbsp;&nbsp;|&nbsp;&nbsp;
+        SPACE &nbsp;·&nbsp; NITRO &nbsp;&nbsp;|&nbsp;&nbsp;
+        P &nbsp;·&nbsp; PAUSE
+      </p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       PAUSE OVERLAY
+  ═══════════════════════════════════════════════ -->
+  <div id="pauseMenu" class="overlay hidden">
+    <div class="pause-card">
+      <h2 class="pause-title">PAUSED</h2>
+      <button id="resumeBtn" class="btn-primary small">▶ RESUME</button>
+      <button id="pauseRestartBtn" class="btn-secondary small">↺ RESTART</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       GAME OVER OVERLAY
+  ═══════════════════════════════════════════════ -->
+  <div id="gameOverMenu" class="overlay hidden">
+    <div class="gameover-card">
+      <div class="crash-icon">💥</div>
+      <h2 class="gameover-title">GAME OVER</h2>
+      <div class="score-block">
+        <div class="score-row">SCORE <span id="finalScore">0</span></div>
+        <div class="score-row best">BEST &nbsp;<span id="finalHighScore">0</span></div>
+      </div>
+      <div id="newRecordBadge" class="new-record hidden">🏆 NEW RECORD!</div>
+      <button id="restartBtn" class="btn-primary">↺ &nbsp;TRY AGAIN</button>
+      <button id="menuBtn"    class="btn-secondary">⌂ &nbsp;MAIN MENU</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       HUD  (in-game overlay)
+  ═══════════════════════════════════════════════ -->
+  <div id="hud" class="hud hidden">
+    <div class="hud-left">
+      <div class="hud-stat">
+        <span class="hud-label">SCORE</span>
+        <span class="hud-value" id="hudScore">0</span>
+      </div>
+      <div class="hud-stat">
+        <span class="hud-label">BEST</span>
+        <span class="hud-value" id="hudHighScore">0</span>
+      </div>
+    </div>
+    <div class="hud-center">
+      <div class="hud-stat centered">
+        <span class="hud-label">SPEED</span>
+        <span class="hud-value speed-value" id="hudSpeed">0 km/h</span>
+      </div>
+    </div>
+    <div class="hud-right">
+      <div class="nitro-bar-wrap">
+        <span class="hud-label">NITRO</span>
+        <div class="nitro-bar-bg">
+          <div class="nitro-bar-fill" id="nitroBar"></div>
+        </div>
+      </div>
+      <button id="pauseBtn" class="hud-pause-btn" title="Pause (P)">⏸</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       GAME CANVAS
+  ═══════════════════════════════════════════════ -->
+  <canvas id="gameCanvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
